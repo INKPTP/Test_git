@@ -1,0 +1,228 @@
+:root {
+    /* Base Colors */
+    --primary-color: #3f51b5; /* Indigo/Deep Blue */
+    --secondary-color: #FF9800; /* Amber/Orange */
+    --background-color: #f8f9fa; /* Light Gray Background */
+    --card-background: #ffffff;
+    --text-color: #343a40; /* Dark Text */
+    --border-radius: 8px;
+
+    /* Element Group Colors (Modern, Muted Palette) */
+    --alkali-metal: #FFC0CB; /* Light Pink */
+    --alkaline-earth-metal: #ADD8E6; /* Light Blue */
+    --transition-metal: #F0E68C; /* Khaki/Muted Yellow */
+    --post-transition-metal: #D3D3D3; /* Light Gray */
+    --metalloid: #90EE90; /* Light Green */
+    --nonmetal: #A9A9A9; /* Dark Gray (for C, N, O, P, S, Se) */
+    --halogen: #FFA07A; /* Light Salmon */
+    --noble-gas: #BA55D3; /* Medium Orchid */
+    --lanthanide: #E0B0FF; /* Plum */
+    --actinide: #FFDAB9; /* Peach */
+    --unknown: #ccc; /* Pale Gray */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main {
+    display: flex;
+    gap: 30px;
+    max-width: 1500px; 
+    margin: 0 auto;
+}
+
+/* --- Calculator Panel Styling --- */
+.calculator-panel {
+    flex: 1; 
+    background: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    height: fit-content;
+    border-top: 5px solid var(--primary-color);
+}
+
+/* Formula Display Styling (Fraction Layout) */
+.formula-display {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.fraction-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 250px;
+    margin-left: 10px;
+}
+
+.fraction-line input {
+    text-align: center;
+    border: 1px solid var(--primary-color);
+    padding: 8px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.fraction-line hr {
+    width: 100%;
+    border: 1px solid var(--text-color);
+    margin: 0;
+}
+
+#molar-mass {
+    background-color: #e9e9e9;
+    font-weight: bold;
+}
+
+/* Action Buttons Layout */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.action-buttons button {
+    flex: 1;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons button:hover {
+    background-color: #303f9f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#reset-mw-btn {
+    background-color: var(--secondary-color);
+}
+#reset-mw-btn:hover {
+    background-color: #e68900;
+}
+
+.result-area {
+    background-color: #e3f2fd; /* Light blue background */
+    padding: 15px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid #bbdefb;
+}
+
+#moles-output {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 5px 0 0 0;
+}
+
+/* --- Periodic Table Layout --- */
+.periodic-table-container {
+    flex: 3; 
+    padding: 10px;
+}
+
+#periodic-table-grid {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 3px; 
+    user-select: none;
+}
+
+/* --- Element Button Styling (The Modern Look) --- */
+.element {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    text-align: center;
+    padding: 5px 2px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Atomic Number (Top-Left) */
+.element::before {
+    content: attr(data-atomic-number);
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 0.65em;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Molar Mass (Bottom-Center) */
+.element span {
+    font-size: 0.65em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 2px;
+}
+
+/* Symbol Text (Main Focus) */
+.element:not(span) {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-top: 10px;
+}
+
+/* --- Interactive Hover Effect --- */
+.element:hover {
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                0 6px 6px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    color: #fff; 
+    filter: brightness(1.2);
+}
+
+.element:hover::before,
+.element:hover span {
+    color: white; 
+}
+
+
+/* --- Element Group Colors --- */
+.alkali-metal { background-color: var(--alkali-metal); }
+.alkaline-earth-metal { background-color: var(--alkaline-earth-metal); }
+.transition-metal { background-color: var(--transition-metal); }
+.post-transition-metal { background-color: var(--post-transition-metal); }
+.metalloid { background-color: var(--metalloid); }
+.nonmetal { background-color: var(--nonmetal); }
+.halogen { background-color: var(--halogen); }
+.noble-gas { background-color: var(--noble-gas); }
+.lanthanide, .lanthanide-placeholder { background-color: var(--lanthanide); }
+.actinide, .actinide-placeholder { background-color: var(--actinide); }
+.unknown { background-color: var(--unknown); }
